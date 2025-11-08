@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Yug Shrestha</title>
+<link rel="icon" type="image/jpeg" href="yug1.jpg" />
+
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:#e6f4fa; font-family:system-ui, sans-serif;
+    min-height:100vh; display:flex; justify-content:center; align-items:center;
+    position:relative;
+  }
+
+  /* -------- Heading -------- */
+  .heading{
+    position:absolute; top:10%; width:100%; text-align:center;
+    color:#000; text-shadow:2px 2px 4px rgba(0,0,0,.3); z-index:10;
+  }
+
+  /* -------- Slideshow (3s each) -------- */
+  .slideshow{
+    position:relative; width:50vmin; height:50vmin; overflow:hidden;
+    border:15px solid #fff; border-radius:25px; background:#fff;
+    box-shadow:0 0 30px rgba(255,255,255,.3),0 0 60px rgba(0,0,0,.7);
+  }
+  .slideshow img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    opacity:0; animation:fade 90s infinite;
+  }
+  @keyframes fade{0%{opacity:1}8%{opacity:1}10%{opacity:0}100%{opacity:0}}
+  /* stagger - 3s each */
+  .slideshow img:nth-child(1 ){animation-delay:0s}
+  .slideshow img:nth-child(2 ){animation-delay:3s}
+  .slideshow img:nth-child(3 ){animation-delay:6s}
+  .slideshow img:nth-child(4 ){animation-delay:9s}
+  .slideshow img:nth-child(5 ){animation-delay:12s}
+  .slideshow img:nth-child(6 ){animation-delay:15s}
+  .slideshow img:nth-child(7 ){animation-delay:18s}
+  .slideshow img:nth-child(8 ){animation-delay:21s}
+  .slideshow img:nth-child(9 ){animation-delay:24s}
+  .slideshow img:nth-child(10){animation-delay:27s}
+  .slideshow img:nth-child(11){animation-delay:30s}
+  .slideshow img:nth-child(12){animation-delay:33s}
+  .slideshow img:nth-child(13){animation-delay:36s}
+  .slideshow img:nth-child(14){animation-delay:39s}
+  .slideshow img:nth-child(15){animation-delay:42s}
+  .slideshow img:nth-child(16){animation-delay:45s}
+  .slideshow img:nth-child(17){animation-delay:48s}
+  .slideshow img:nth-child(18){animation-delay:51s}
+  .slideshow img:nth-child(19){animation-delay:54s}
+  .slideshow img:nth-child(20){animation-delay:57s}
+  .slideshow img:nth-child(21){animation-delay:60s}
+  .slideshow img:nth-child(22){animation-delay:63s}
+  .slideshow img:nth-child(23){animation-delay:66s}
+  .slideshow img:nth-child(24){animation-delay:69s}
+  .slideshow img:nth-child(25){animation-delay:72s}
+  .slideshow img:nth-child(26){animation-delay:75s}
+  .slideshow img:nth-child(27){animation-delay:78s}
+  .slideshow img:nth-child(28){animation-delay:81s}
+  .slideshow img:nth-child(29){animation-delay:84s}
+  .slideshow img:nth-child(30){animation-delay:87s}
+
+  /* -------- Balloons (behind) -------- */
+  .balloons,.balloon{
+    position:absolute; width:200px; opacity:.45; z-index:-1; pointer-events:none;
+    animation:float 6s ease-in-out infinite alternate;
+  }
+  .balloons{top:5%; right:5%} .balloon{top:5%; left:5%}
+  @keyframes float{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-20px) rotate(2deg)}100%{transform:translateY(0) rotate(-2deg)}}
+
+  /* -------- Cake -------- */
+  .cake{
+    position:absolute; bottom:4%; width:100%; display:flex; justify-content:center; z-index:5;
+  }
+  .cake img{ width:250px; max-width:60vw; filter:drop-shadow(0 14px 30px rgba(0,0,0,.28)); }
+
+  /* -------- Candles (4 smaller candles on cake) -------- */
+  .candles-container{
+    position:absolute; bottom:calc(4% + 175px);
+    left:50%; transform:translateX(-50%); z-index:6;
+    display:flex; gap:25px;
+  }
+  .candle-wrapper{
+    cursor:pointer; filter:drop-shadow(0 3px 6px rgba(0,0,0,.25));
+    position:relative;
+  }
+  .candle{
+    width:10px; height:45px;
+    background:linear-gradient(to right,#e8a5a5 0%,#f5d5d5 20%,#fff5f5 50%,#f5d5d5 80%,#e8a5a5 100%);
+    border-radius:2px 2px 0 0; position:relative;
+    box-shadow:inset -1px 0 2px rgba(0,0,0,.25), inset 1px 0 2px rgba(255,255,255,.5);
+  }
+  .candle::before{content:'';position:absolute;top:6px;left:1.5px;width:1.5px;height:8px;
+    background:linear-gradient(to bottom,rgba(255,255,255,.7),rgba(245,213,213,.9));border-radius:0 0 1px 1px;
+    box-shadow:4px 2px 0 -1px rgba(255,255,255,.6),6px 1px 0 -1px rgba(245,213,213,.85);}
+  .candle::after{content:'';position:absolute;top:-1.5px;left:50%;transform:translateX(-50%);width:12px;height:3px;
+    background:radial-gradient(ellipse at center,#fff5f5 0%,#f5d5d5 60%,#e8a5a5 100%);border-radius:50%;
+    box-shadow:0 1px 2px rgba(0,0,0,.35), inset 0 -1px 1px rgba(0,0,0,.15);}
+  .wick{
+    position:absolute; top:-7px; left:50%; transform:translateX(-50%);
+    width:1.5px; height:6px; background:linear-gradient(to bottom,#0a0a0a,#2a2a2a,#1a1a1a); border-radius:1px;
+    transform-origin:bottom center; transition:transform .08s ease-out;
+  }
+
+  .flame-container{ position:absolute; top:-28px; left:50%; transform:translateX(-50%); transform-origin:bottom center; }
+  .flame{
+    width:12px; height:22px; border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+    background:radial-gradient(ellipse at center bottom,#ffe600 0%,#ffbe00 25%,#ff8c00 55%,rgba(255,90,0,.65) 78%,rgba(230,60,0,.35) 92%,transparent 100%);
+    position:relative; filter:blur(.25px);
+    animation:flicker .11s infinite alternate ease-in-out;
+  }
+  .flame::before{
+    content:''; position:absolute; top:2px; left:50%; transform:translateX(-50%);
+    width:7px; height:14px; border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+    background:radial-gradient(ellipse at center bottom,#fffff0 0%,#fff5b4 35%,rgba(255,220,130,.7) 65%,transparent 100%);
+  }
+  /* Continuous flicker */
+  @keyframes flicker{
+    0%   { transform:translateY(0) scaleY(1)   skewX(-1deg);  filter:blur(.4px); }
+    100% { transform:translateY(-1px) scaleY(.92) skewX(1.2deg); filter:blur(.6px); }
+  }
+
+  .glow{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:35px; height:35px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,200,0,.5) 0%, rgba(255,150,0,.3) 40%, transparent 70%);
+    animation:glowPulse 2s infinite alternate ease-in-out;
+  }
+  @keyframes glowPulse{
+    0%{opacity:.6; transform:translate(-50%,-50%) scale(.9)}
+    100%{opacity:.9; transform:translate(-50%,-50%) scale(1.08)}
+  }
+
+  /* flame-out state */
+  .flame-out .flame, .flame-out .glow{ opacity:0; animation:none; transition:opacity .35s ease-out; }
+
+  /* smoke */
+  .smoke{ position:absolute; top:-18px; left:50%; transform:translateX(-50%); width:8px; height:45px; opacity:0; pointer-events:none; }
+  .smoke.active{ opacity:1; }
+  .smoke-puff{
+    position:absolute; width:10px; height:10px; border-radius:50%;
+    background:radial-gradient(circle, rgba(180,180,180,.85) 0%, rgba(160,160,160,.55) 35%, rgba(140,140,140,.25) 65%, transparent 100%);
+    filter:blur(2px); animation:smoke-rise 2.8s ease-out forwards;
+  }
+  @keyframes smoke-rise{
+    0%{opacity:.85; transform:translate(-50%,0) scale(.5)}
+    100%{opacity:0; transform:translate(calc(-50% + var(--drift,0px)),-55px) scale(2.2); filter:blur(4px)}
+  }
+
+  /* confetti */
+  .confetti-piece{ position:fixed; width:10px; height:10px; pointer-events:none; z-index:9999; }
+  @keyframes confetti-fall{ to{ transform:translateY(100vh) rotate(720deg); opacity:0 } }
+</style>
+</head>
+<body>
+  <div class="slideshow">
+    <!-- your 30 images -->
+    <img src="yug1.jpg" alt=""><img src="yug2.jpg" alt="">
+    <img src="yug4.jpg" alt=""><img src="yug5.jpg" alt="">
+    <img src="yug8.jpg" alt="">
+    <img src="yug11.jpg" alt="">
+    <img src="yug13.jpg" alt=""><img src="yug14.jpg" alt=""><img src="yug15.jpg" alt="">
+    <img src="yug16.jpg" alt=""><img src="yug17.jpg" alt=""><img src="yug18.jpg" alt="">
+    <img src="yug19.jpg" alt=""><img src="yug20.jpg" alt=""><img src="yug21.jpg" alt="">
+    <img src="yug22.jpg" alt=""><img src="yug23.jpg" alt=""><img src="yug24.jpg" alt="">
+    <img src="yug25.jpg" alt=""><img src="yug26.jpg" alt=""><img src="yug27.jpg" alt="">
+    <img src="yug28.jpg" alt=""><img src="yug29.jpg" alt=""><img src="yug30.jpg" alt="">
+  </div>
+
+  <div class="heading"><h1>Happy 2nd Birthday Yug :)</h1></div>
+
+  <img src="ballons.png" class="balloons" alt="">
+  <img src="ballons.png" class="balloon"  alt="">
+
+  <div class="cake"><img src="cake.png" alt="Birthday Cake"></div>
+
+  <!-- Candles -->
+  <div class="candles-container" id="candlesContainer">
+    <div class="candle-wrapper" data-candle="1">
+      <div class="flame-container">
+        <div class="glow"></div>
+        <div class="flame"></div>
+      </div>
+      <div class="smoke"></div>
+      <div class="wick"></div>
+      <div class="candle"></div>
+    </div>
+    <div class="candle-wrapper" data-candle="2">
+      <div class="flame-container">
+        <div class="glow"></div>
+        <div class="flame"></div>
+      </div>
+      <div class="smoke"></div>
+      <div class="wick"></div>
+      <div class="candle"></div>
+    </div>
+    <div class="candle-wrapper" data-candle="3">
+      <div class="flame-container">
+        <div class="glow"></div>
+        <div class="flame"></div>
+      </div>
+      <div class="smoke"></div>
+      <div class="wick"></div>
+      <div class="candle"></div>
+    </div>
+    <div class="candle-wrapper" data-candle="4">
+      <div class="flame-container">
+        <div class="glow"></div>
+        <div class="flame"></div>
+      </div>
+      <div class="smoke"></div>
+      <div class="wick"></div>
+      <div class="candle"></div>
+    </div>
+  </div>
+
+  <!-- background music (optional) -->
+  <audio id="bgMusic" src="happy-birthday.mp3" loop preload="auto"></audio>
+
+<script>
+  const music = document.getElementById('bgMusic');
+  const candlesContainer = document.getElementById('candlesContainer');
+  const allCandles = document.querySelectorAll('.candle-wrapper');
+
+  let micStarted = false;
+  let blown = new Set(); // track which candles are blown
+  let analyser, dataArray, rafId;
+  let ambientRMS = 0.0;
+
+  window.addEventListener('pointerdown', () => { tryStartMusic(); startMic(); }, {once:true});
+  window.addEventListener('load', tryStartMusic);
+  function tryStartMusic(){ if(!bgMusic) return; bgMusic.volume=.4; bgMusic.play().catch(()=>{}); }
+
+  // Click individual candle to blow it out
+  allCandles.forEach(candle => {
+    candle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const candleNum = candle.dataset.candle;
+      if (!blown.has(candleNum)) {
+        blowOut(candle);
+      }
+    });
+  });
+
+  async function startMic(){
+    if (micStarted) return; micStarted = true;
+    try{
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio:{ echoCancellation:false, noiseSuppression:false, autoGainControl:false }
+      });
+      const ctx = new (window.AudioContext||window.webkitAudioContext)();
+      const src = ctx.createMediaStreamSource(stream);
+      analyser = ctx.createAnalyser();
+      analyser.fftSize = 2048;
+      dataArray = new Uint8Array(analyser.fftSize);
+      src.connect(analyser);
+
+      // Calibration
+      const calStart = performance.now();
+      let sum = 0, n = 0;
+      const calibrate = () => {
+        analyser.getByteTimeDomainData(dataArray);
+        let s = 0;
+        for(let i=0;i<dataArray.length;i++){
+          const v = (dataArray[i]-128)/128; s += v*v;
+        }
+        const rms = Math.sqrt(s/dataArray.length);
+        sum += rms; n++;
+        if (performance.now() - calStart < 2000) {
+          requestAnimationFrame(calibrate);
+        } else {
+          ambientRMS = (sum/n) || 0.005;
+          listen();
+        }
+      };
+      calibrate();
+    }catch(e){
+      // mic denied => can still click candles
+    }
+  }
+
+  function listen(){
+    let hitCounters = {}; // track hits per candle
+
+    const loop = () => {
+      if (blown.size >= 4) return; // all blown
+      
+      analyser.getByteTimeDomainData(dataArray);
+
+      let s=0;
+      for(let i=0;i<dataArray.length;i++){
+        const v=(dataArray[i]-128)/128; s+=v*v;
+      }
+      const rms = Math.sqrt(s/dataArray.length);
+
+      const MARGIN = 0.005;
+      const MULT = 1.2;
+      const threshold = ambientRMS*MULT + MARGIN;
+
+      allCandles.forEach(candleEl => {
+        const candleNum = candleEl.dataset.candle;
+        if (blown.has(candleNum)) return;
+
+        const flameContainer = candleEl.querySelector('.flame-container');
+        const wick = candleEl.querySelector('.wick');
+        
+        const sway = Math.sin(Date.now()/60 + parseInt(candleNum)*10)*0.4;
+        
+        if (rms > threshold){
+          const intensity = Math.min((rms - threshold) * 28, 2.2);
+          const tilt = intensity * 65;
+          const squash = 1 - intensity*0.35;
+          flameContainer.style.transform =
+            `translateX(calc(-50% + ${sway*2}px)) rotate(${tilt}deg) scaleY(${squash}) scaleX(${1+intensity*0.25})`;
+          wick.style.transform = `translateX(-50%) rotate(${tilt}deg)`;
+
+          if (!hitCounters[candleNum]) hitCounters[candleNum] = 0;
+          if (intensity > 0.25) hitCounters[candleNum]++; 
+          else hitCounters[candleNum] = Math.max(0, hitCounters[candleNum]-1);
+
+          if (hitCounters[candleNum] > 3) {
+            blowOut(candleEl);
+            hitCounters[candleNum] = 0;
+          }
+        } else {
+          flameContainer.style.transform = `translateX(calc(-50% + ${sway}px))`;
+          wick.style.transform = 'translateX(-50%)';
+          if (hitCounters[candleNum]) hitCounters[candleNum] = Math.max(0, hitCounters[candleNum]-1);
+        }
+      });
+
+      rafId = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  function createSmokePuff(smokeEl){
+    const puff = document.createElement('div');
+    puff.className = 'smoke-puff';
+    const drift = (Math.random()-0.5)*30;
+    puff.style.left = (Math.random()*10-5)+'px';
+    puff.style.setProperty('--drift', drift+'px');
+    puff.style.animationDelay = (Math.random()*0.3)+'s';
+    smokeEl.appendChild(puff);
+    setTimeout(()=>puff.remove(), 3000);
+  }
+
+  function blowOut(candleEl){
+    const candleNum = candleEl.dataset.candle;
+    if (blown.has(candleNum)) return;
+    blown.add(candleNum);
+
+    const flameContainer = candleEl.querySelector('.flame-container');
+    const smoke = candleEl.querySelector('.smoke');
+    
+    flameContainer.classList.add('flame-out');
+    smoke.classList.add('active');
+    
+    for(let i=0;i<8;i++) {
+      setTimeout(() => createSmokePuff(smoke), i*180);
+    }
+    
+    setTimeout(()=>smoke.classList.remove('active'), 2500);
+    
+    // Confetti only when ALL candles blown
+    if (blown.size === 4) {
+      setTimeout(createConfetti, 300);
+    }
+  }
+
+  function createConfetti(){
+    const colors=['#f093fb','#f5576c','#4facfe','#00f2fe','#43e97b','#38f9d7','#fa709a','#fee140','#FF6B6B','#4ECDC4','#FFE66D','#A8E6CF'];
+    for(let i=0;i<80;i++){
+      setTimeout(()=>{
+        const c=document.createElement('div'); c.className='confetti-piece';
+        c.style.left=Math.random()*100+'%'; c.style.top='-10px';
+        c.style.width=(8+Math.random()*6)+'px'; c.style.height=(8+Math.random()*6)+'px';
+        c.style.background=colors[Math.floor(Math.random()*colors.length)];
+        c.style.borderRadius=Math.random()>0.5?'50%':'0';
+        c.style.animation=`confetti-fall ${2.5+Math.random()*2}s ease-out forwards`;
+        document.body.appendChild(c); setTimeout(()=>c.remove(),5000);
+      }, i*40);
+    }
+    
+    // Reset candles after confetti finishes (5 seconds)
+    setTimeout(resetCandles, 5000);
+  }
+
+  function resetCandles(){
+    blown.clear();
+    
+    allCandles.forEach(candleEl => {
+      const flameContainer = candleEl.querySelector('.flame-container');
+      const smoke = candleEl.querySelector('.smoke');
+      
+      flameContainer.classList.remove('flame-out');
+      smoke.classList.remove('active');
+    });
+  }
+</script>
+</body>
+</html>
